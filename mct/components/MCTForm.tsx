@@ -17,62 +17,68 @@ const MCTForm: React.FC<MCTFormProps> = ({ data, item, onChange }) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values, actions) => {
-          console.log({ values, actions });
           onChange(values);
+          actions.resetForm({});
         }}
       >
-        <Form>
-          <div className="p-4">
-            <label className="block" htmlFor={item + " calories"}>
-              Calories
-            </label>
-            <Field
-              type="number"
-              id="calories"
-              name={item + " calories"}
-              className="bg-gray-200 text-gray-700 border rounded px-4 py-3 leading-tight focus:outline-none focus:bg-white"
-            />
-          </div>
-          <div className="p-4">
-            <label className="block" htmlFor="carbs">
-              Carbs
-            </label>
-            <Field
-              type="number"
-              id="carbs"
-              name={item + " carbs"}
-              className="bg-gray-200 text-gray-700 border rounded px-4 py-3 leading-tight focus:outline-none focus:bg-white"
-            />
-          </div>
-          <div className="p-4">
-            <label className="block" htmlFor="fat">
-              Fat
-            </label>
-            <Field
-              type="number"
-              id="fat"
-              name={item + " fat"}
-              className="bg-gray-200 text-gray-700 border rounded px-4 py-3 leading-tight focus:outline-none focus:bg-white"
-            />
-          </div>
-          <div className="p-4">
-            <label className="block" htmlFor="protein">
-              Protein
-            </label>
-            <Field
-              type="number"
-              id="protein"
-              name={item + " protein"}
-              className="bg-gray-200 text-gray-700 border rounded px-4 py-3 leading-tight focus:outline-none focus:bg-white"
-            />
-          </div>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            type="submit"
-          >
-            Submit
-          </button>
-        </Form>
+        {({ values }) => (
+          <Form>
+            <div className="p-4">
+              <label className="block" htmlFor={item + " calories"}>
+                Calories
+              </label>
+              <Field
+                value={values[item + " calories"] || ""}
+                type="number"
+                id="calories"
+                name={item + " calories"}
+                className="bg-gray-200 text-gray-700 border rounded px-4 py-3 leading-tight focus:outline-none focus:bg-white"
+              />
+            </div>
+            <div className="p-4">
+              <label className="block" htmlFor="carbs">
+                Carbs
+              </label>
+              <Field
+                value={values[item + " carbs"] || ""}
+                type="number"
+                id="carbs"
+                name={item + " carbs"}
+                className="bg-gray-200 text-gray-700 border rounded px-4 py-3 leading-tight focus:outline-none focus:bg-white"
+              />
+            </div>
+            <div className="p-4">
+              <label className="block" htmlFor="fat">
+                Fat
+              </label>
+              <Field
+                value={values[item + " fat"] || ""}
+                type="number"
+                id="fat"
+                name={item + " fat"}
+                className="bg-gray-200 text-gray-700 border rounded px-4 py-3 leading-tight focus:outline-none focus:bg-white"
+              />
+            </div>
+            <div className="p-4">
+              <label className="block" htmlFor="protein">
+                Protein
+              </label>
+              <Field
+                type="number"
+                value={values[item + " protein"] || ""}
+                id="protein"
+                name={item + " protein"}
+                className="bg-gray-200 text-gray-700 border rounded px-4 py-3 leading-tight focus:outline-none focus:bg-white"
+              />
+            </div>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              type="submit"
+            >
+              Submit
+            </button>
+          </Form>
+        )}
       </Formik>
     </div>
   );
