@@ -30,7 +30,7 @@ const Result: React.FC<resultProps> = ({ results }) => {
   };
 
   return (
-    <div className={bg + " w-1/4 p-4 text-white"}>
+    <div className={bg + " w-1/4 p-4 text-white text-center"}>
       <h2 className="text-3xl font-bold">
         {results.total}
         <div className="flex text-sm p-4">
@@ -39,7 +39,7 @@ const Result: React.FC<resultProps> = ({ results }) => {
           <div className="w-1/3">{results.target + results.variant}</div>
         </div>
       </h2>
-      <h3 className="text-xl">{results.label}</h3>
+      <h3 className="text-xl font-bold">{results.label}</h3>
     </div>
   );
 };

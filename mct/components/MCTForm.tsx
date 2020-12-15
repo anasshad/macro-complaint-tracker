@@ -7,20 +7,10 @@ interface MCTFormProps {
   onChange: (x: FormValues) => void;
 }
 
-interface FormValues {
-  calories: string;
-  carbs: string;
-  fat: string;
-  protein: string;
-}
+interface FormValues {}
 
 const MCTForm: React.FC<MCTFormProps> = ({ data, item, onChange }) => {
-  const initialValues: FormValues = {
-    calories: "",
-    carbs: "",
-    fat: "",
-    protein: "",
-  };
+  const initialValues: FormValues = {};
   return (
     <div className="w-1/3 px-5">
       <h2 className="py-5 text-2xl font-bold">{item}</h2>
