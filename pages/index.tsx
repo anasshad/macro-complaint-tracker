@@ -6,6 +6,8 @@ import MCTForm from "../components/MCTForm";
 import DateSelector from "../components/DateSelector";
 import dayjs from "dayjs";
 
+const baseUrl = process.env.BASE_URL;
+
 const App = ({ data }) => {
   const [results, setResults] = useState(data);
 
@@ -22,7 +24,7 @@ const App = ({ data }) => {
   };
 
   const updateMacros = async () => {
-    const res = await fetch("/api/daily", {
+    const res = await fetch(baseUrl + "/api/daily", {
       method: "post",
       body: JSON.stringify(results),
     });
@@ -31,7 +33,7 @@ const App = ({ data }) => {
   const getDataForPreviousDay = async () => {
     let currentDate = dayjs(results.date);
     let newDate = currentDate.subtract(1, "day").format("YYYY-MM-DDTHH:mm:ss");
-    const res = await fetch("http://localhost:3000/api/daily?date=" + newDate);
+    const res = await fetch(baseUrl + "/api/daily?date=" + newDate);
     const json = await res.json();
 
     setResults(json);
@@ -40,7 +42,7 @@ const App = ({ data }) => {
   const getDataForNextDay = async () => {
     let currentDate = dayjs(results.date);
     let newDate = currentDate.add(1, "day").format("YYYY-MM-DDTHH:mm:ss");
-    const res = await fetch("http://localhost:3000/api/daily?date=" + newDate);
+    const res = await fetch(baseUrl + "/api/daily?date=" + newDate);
     const json = await res.json();
 
     setResults(json);
@@ -76,7 +78,7 @@ const App = ({ data }) => {
 };
 
 App.getInitialProps = async (context) => {
-  const res = await fetch("http://localhost:3000/api/daily");
+  const res = await fetch(baseUrl + "/api/daily");
   const json = await res.json();
   return {
     data: json,
